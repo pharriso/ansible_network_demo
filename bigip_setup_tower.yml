@@ -6,6 +6,8 @@
   vars:
     tower_inventory: tower-demo
     tower_org: Default
+    tower_project: playbooks
+    tower_project_url: https://github.com/pharriso/ansible_network_demo.git
   tasks:
   - name: template out tower-cli file
     blockinfile:
@@ -23,4 +25,7 @@
   - name: import inventory
     shell: tower-manage inventory_import --inventory-name={{ tower_inventory }}  --source=/home/{{ ansible_user_id }}/networking-workshop/lab_inventory/hosts
     become: true
+
+  - name: create tower project
+    shell: tower-cli project create --name {{ tower_project }} --organization {{ tower_org }} --scm-type git --scm-url {{ tower_project_url }} --scm-clean true --scm-delete-on-update true --scm-update-on-launch true --monitor
 
