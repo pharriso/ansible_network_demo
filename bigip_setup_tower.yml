@@ -13,3 +13,7 @@
         username: admin
         password: ansible
         verify_ssl: false
+
+  - name: create inventory
+    shell: tower-cli inventory create --name tower-demo --organization Default
+
