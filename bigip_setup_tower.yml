@@ -33,4 +33,4 @@
     shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml
 
   - name: create f5 member job template
-    shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @survey
+    shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @./survey
