@@ -33,7 +33,7 @@
     shell: tower-cli credential_type create  --name f5 --inputs @f5_cred_input  --injectors @f5_cred_inject --kind cloud
 
   - name: create f5 credential
-    shell: tower-cli credential create --name f5 --organization Default --credential-type f5 --inputs='{"ansible_user": "{{ hostvars[f5].ansible_user }}", "ansible_ssh_pass": "{{ hostvars[f5].ansible_ssh_pass }}"}'
+    shell: tower-cli credential create --name f5 --organization Default --credential-type f5 --inputs='{"ansible_user": "admin", "ansible_ssh_pass": "admin"}'
 
   - name: create f5 config job template
     shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml --credential f5
