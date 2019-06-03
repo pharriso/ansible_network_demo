@@ -36,7 +36,7 @@
     shell: "tower-cli credential create --name f5 --organization Default --credential-type f5 --inputs='{\"ansible_user\": \"admin\", \"ansible_ssh_pass\": \"admin\"}'"
 
   - name: create f5 config job template
-    shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml --credential f5
+    shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml --ask-credential-on-launch true
 
   - name: create f5 member job template
-    shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @job_survey --credential f5
+    shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @job_survey --ask-credential-on-launch true
