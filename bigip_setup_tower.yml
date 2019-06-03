@@ -29,6 +29,9 @@
   - name: create tower project
     shell: tower-cli project create --name {{ tower_project }} --organization {{ tower_org }} --scm-type git --scm-url {{ tower_project_url }} --scm-clean true --scm-delete-on-update true --scm-update-on-launch true --monitor
 
+  - name: create f5 credential type
+    shell: tower-cli credential_type create  --name f5 --inputs @f5_cred_input  --injectors @f5_cred_inject
+
   - name: create f5 config job template
     shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml
 

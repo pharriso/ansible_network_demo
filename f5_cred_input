@@ -1,0 +1,11 @@
+fields:
+  - id: ansible_user
+    type: string
+    label: Username
+  - id: ansible_ssh_pass
+    type: string
+    label: Password
+    secret: true
+required:
+  - ansible_user
+  - ansible_ssh_pass

@@ -1,0 +1,3 @@
+extra_vars:
+  ansible_ssh_pass: '{{ ansible_ssh_pass }}'
+  ansible_user: '{{ ansible_user }}'
