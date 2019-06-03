@@ -7,6 +7,7 @@
   - name: template out tower-cli file
     blockinfile:
       path: /home/{{ ansible_user_id }}/.tower_cli.cfg
+      create: true
       block: |
         host: localhost
         username: admin
