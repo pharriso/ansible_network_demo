@@ -6,7 +6,7 @@
 
   tasks:
 
-  - name: Disable pool member
+  - name: manage pool member
     bigip_pool_member:
       server: "{{ private_ip }}"
       user: "{{ ansible_user }}"
