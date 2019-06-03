@@ -30,7 +30,7 @@
     shell: tower-cli project create --name {{ tower_project }} --organization {{ tower_org }} --scm-type git --scm-url {{ tower_project_url }} --scm-clean true --scm-delete-on-update true --scm-update-on-launch true --monitor
 
   - name: create f5 config job template
-    shell:  tower-cli job_template create --name "{{ item.name }}"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook {{ item.playbook }}
-    loop:
-      - {"name": "Configure F5", "playbook": "bigip_config.yml"}
+    shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml
 
+  - name: create f5 member job template
+    shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml
