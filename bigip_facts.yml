@@ -4,9 +4,7 @@
   connection: local
   gather_facts: no
 
-
   tasks:
-
     - name: collect big-ip facts
       bigip_device_facts:
         gather_subset:
@@ -17,3 +15,15 @@
         server_port: 8443
         validate_certs: no
       register: device_facts
+
+    - name: display complete big-ip system information
+      debug:
+        var: device_facts
+
+    - name: display only the mac address
+      debug:
+        var: device_facts['system_info']['base_mac_address']
+
+    - name: display only the version
+      debug:
+        var: device_facts['system_info']['product_version']
