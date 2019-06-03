@@ -1,0 +1,20 @@
+---
+- name: big-ip setup
+  hosts: lb
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+  - name: Disable pool member
+    bigip_pool_member:
+      server: "{{ private_ip }}"
+      user: "{{ ansible_user }}"
+      password: "{{ ansible_ssh_pass }}"
+      server_port: "8443"
+      pool: "{{ pool_name }}"
+      state: "forced_offline"
+      port: 80
+      name: "{{ member_name }}"
+      validate_certs: "no"
+
