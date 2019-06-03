@@ -3,6 +3,9 @@
 - name: setup tower host for bigip demo
   hosts: localhost
   connection: local
+  vars:
+    tower_inventory: tower-demo
+    tower_org: Default
   tasks:
   - name: template out tower-cli file
     blockinfile:
@@ -14,6 +17,10 @@
         password: ansible
         verify_ssl: false
 
-  - name: create inventory
-    shell: tower-cli inventory create --name tower-demo --organization Default
+  - name: create inventory in tower
+    shell: tower-cli inventory create --name {{ tower_inventory }} --organization {{ tower_org }}
+
+  - name: import inventory
+    shell: tower-manage inventory_import --inventory-name={{ tower_inventory }}  --source=/home/{{ ansible_user_id }}/networking-workshop/lab_inventory/hosts
+    become: true
 
