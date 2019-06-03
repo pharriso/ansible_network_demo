@@ -1,0 +1,14 @@
+---
+
+- name: setup tower host for bigip demo
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: template out tower-cli file
+    blockinfile:
+      path: /home/{{ ansible_user_id }}/.tower_cli.cfg
+      block: |
+        host: localhost
+        username: admin
+        password: ansible
+        verify_ssl: false
