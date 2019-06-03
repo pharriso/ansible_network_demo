@@ -13,7 +13,7 @@
       password: "{{ ansible_ssh_pass }}"
       server_port: "8443"
       pool: "{{ pool_name }}"
-      state: "forced_offline"
+      state: "{{ member_state }}"
       port: 80
       name: "{{ member_name }}"
       validate_certs: "no"
