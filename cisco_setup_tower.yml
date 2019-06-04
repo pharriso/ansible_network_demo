@@ -49,6 +49,7 @@
       name: cisco
       organization: "{{ tower_org }}"
       ssh_key_data: "{{ cisco_ssh_key }}"
+      username: ec2-user
       kind: ssh
 
   - name: create cisco backup job template
