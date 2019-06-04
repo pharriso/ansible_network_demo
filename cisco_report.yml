@@ -1,0 +1,27 @@
+---
+- name: generate os report from routers
+  hosts: cisco
+  connection: network_cli
+  gather_facts: no
+
+  tasks:
+    - name: gather router facts
+      ios_facts:
+
+    - name: ensure reports folder
+      run_once: true
+      file:
+        name: reports
+        state: directory
+
+    - name: render facts as a report
+      template:
+        src: templates/os_report.j2
+        dest: reports/{{ inventory_hostname }}.md
+
+    - name: consolidate the ios data
+      assemble:
+        src: reports/
+        dest: network_os_report.md
+      delegate_to: localhost
+      run_once: yes
