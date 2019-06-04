@@ -7,8 +7,8 @@
     inventory_file: /home/{{ ansible_user_id }}/networking-workshop/lab_inventory/hosts
     tower_inventory: cisco-tower-demo
     tower_org: Default
-    tower_project: network-playbooks
-    tower_project_url: https://github.com/pharriso/ansible_network_demo.git
+    tower_project: cisco-network-playbooks
+    tower_project_url: https://github.com/network-automation/tower_workshop
   tasks:
   - name: template out tower-cli file
     blockinfile:
