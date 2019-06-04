@@ -41,6 +41,8 @@
         state: absent
 
     - name: transfer file from this ansible host to {{store_configs}}
+      vars:
+        ansible_connection: ssh
       copy:
         src: "./backup/{{inventory_hostname}}.config"
         dest: "/tmp/backup/{{inventory_hostname}}.config"
