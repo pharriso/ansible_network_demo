@@ -1,0 +1,43 @@
+---
+
+- name: setup tower host for cisco demo
+  hosts: localhost
+  connection: local
+  vars:
+    inventory_file: /home/{{ ansible_user_id }}/networking-workshop/lab_inventory/hosts
+    tower_inventory: cisco-tower-demo
+    tower_org: Default
+    tower_project: network-playbooks
+    tower_project_url: https://github.com/pharriso/ansible_network_demo.git
+  tasks:
+  - name: template out tower-cli file
+    blockinfile:
+      path: /home/{{ ansible_user_id }}/.tower_cli.cfg
+      create: true
+      block: |
+        host: localhost
+        username: admin
+        password: ansible
+        verify_ssl: false
+
+  - name: create cisco inventory in tower
+    shell: tower-cli inventory create --name {{ tower_inventory }} --organization {{ tower_org }}
+
+  - name: import cisco inventory
+    shell: tower-manage inventory_import --inventory-name={{ tower_inventory }}  --source={{ inventory_file }}
+    become: true
+
+  - name: create tower project
+    shell: tower-cli project create --name {{ tower_project }} --organization {{ tower_org }} --scm-type git --scm-url {{ tower_project_url }} --scm-clean true --scm-delete-on-update true --scm-update-on-launch true --monitor
+
+    #- name: create f5 credential type
+    #shell: tower-cli credential_type create  --name f5 --inputs @files/f5_cred_input  --injectors @files/f5_cred_inject --kind cloud
+
+    #- name: create f5 credential
+    #shell: "tower-cli credential create --name f5 --organization Default --credential-type f5 --inputs='{\"ansible_user\": \"admin\", \"ansible_ssh_pass\": \"admin\"}'"
+
+    #- name: create f5 config job template
+    #shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml --ask-credential-on-launch true
+
+    #- name: create f5 member job template
+    #shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @files/job_survey --ask-credential-on-launch true
