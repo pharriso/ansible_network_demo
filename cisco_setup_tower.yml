@@ -23,6 +23,18 @@
   - name: create cisco inventory in tower
     shell: tower-cli inventory create --name {{ tower_inventory }} --organization {{ tower_org }}
 
+  - name: copy inventory
+    copy:
+      src: "{{ inventory_file }}"
+      dest: "{{ inventory_file }}-tower"
+      remote_src: yes
+
+  - name: remove key from inventory 
+    replace:
+      path: "{{ inventory_file }}-tower"
+      regexp: '^ansible_ssh_private_key_file'
+      replace: '#ansible_ssh_private_key_file'
+
   - name: import cisco inventory
     shell: tower-manage inventory_import --inventory-name={{ tower_inventory }}  --source={{ inventory_file }}
     become: true
@@ -38,8 +50,5 @@
       ssh_key_data: /home/{{ ansible_user_id }}/.ssh/aws-private.pem
       kind: ssh
 
-  - name: create cisco banner job template
+  - name: create cisco backup job template
     shell:  tower-cli job_template create --name "Cisco Banner"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook cisco_backup.yml --ask-credential-on-launch true
-
-    #- name: create f5 member job template
-    #shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @files/job_survey --ask-credential-on-launch true
