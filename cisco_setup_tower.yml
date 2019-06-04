@@ -51,4 +51,4 @@
       kind: ssh
 
   - name: create cisco backup job template
-    shell:  tower-cli job_template create --name "Cisco Banner"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook cisco_backup.yml --ask-credential-on-launch true
+    shell:  tower-cli job_template create --name "Cisco Backup"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook cisco_backup.yml --ask-credential-on-launch true
