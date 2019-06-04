@@ -28,7 +28,7 @@
     become: true
 
   - name: create tower project
-    shell: tower-cli project create --name {{ tower_project }} --organization {{ tower_org }} --scm-type git --scm-url {{ tower_project_url }} --scm-clean true --scm-delete-on-update true --scm-update-on-launch true --monitor
+    shell: tower-cli project create --name {{ tower_project }} --organization {{ tower_org }} --scm-type git --scm-url {{ tower_project_url }} --scm-clean false --scm-delete-on-update false --scm-update-on-launch true --monitor
 
   - name: create f5 credential type
     shell: tower-cli credential_type create  --name f5 --inputs @files/f5_cred_input  --injectors @files/f5_cred_inject --kind cloud
