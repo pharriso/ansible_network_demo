@@ -1,0 +1,8 @@
+- id: 2
+  job_template: "Cisco Backup"
+  success_nodes:
+  - failure_nodes:
+    - id: 1
+      job_template: "Cisco Restore"
+    id: 3
+    job_template: "Cisco Config"

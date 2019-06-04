@@ -59,3 +59,9 @@
 
   - name: create cisco config job template
     shell:  tower-cli job_template create --name "Cisco Config"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook cisco_config.yml --credential cisco
+
+  - name: create cisco workflow template
+    shell: tower-cli workflow create --name "Cisco Workflow" --organization {{ tower_org }}
+
+  - name: create cisco workflow schema
+    shell: tower-cli workflow schema "Cisco Workflow" @files/schema
