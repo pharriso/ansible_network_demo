@@ -8,7 +8,7 @@
     tower_inventory: cisco-tower-demo
     tower_org: Default
     tower_project: network-playbooks
-    tower_project_url: https://github.com/network-automation/tower_workshop
+    tower_project_url:  https://github.com/pharriso/ansible_network_demo.git
   tasks:
   - name: template out tower-cli file
     blockinfile:
