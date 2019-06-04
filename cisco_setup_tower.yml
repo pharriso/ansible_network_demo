@@ -32,6 +32,7 @@
 
   - name: Add tower credential
     tower_credential:
+      tower_verify_ssl: false
       name: cisco
       organization: "{{ tower_org }}"
       ssh_key_data: /home/{{ ansible_user_id }}/.ssh/aws-private.pem
