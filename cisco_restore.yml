@@ -1,0 +1,18 @@
+---
+- name: restore configuration
+  hosts: cisco
+  connection: network_cli
+  gather_facts: no
+  vars:
+    store_configs: host1
+
+
+  tasks:
+    - name: copy running config to routeR
+      command: scp /tmp/backup/{{ inventory_hostname }}.config {{ inventory_hostname }}:/{{ inventory_hostname }}.config
+      delegate_to: "{{ store_configs }}"
+
+    - name: config replace
+      ios_command:
+        commands:
+          - config replace flash:{{ inventory_hostname }}.config force
