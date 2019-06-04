@@ -11,8 +11,7 @@
     - name: copy running config to routeR
       vars:
         ansible_connection: ssh
-      command: scp /tmp/backup/{{ inventory_hostname }}.config {{ ansible_host }}:/{{ inventory_hostname }}.config
-      delegate_to: "{{ store_configs }}"
+      command: scp ./backup/{{ inventory_hostname }}.config {{ ansible_host }}:/{{ inventory_hostname }}.config
 
     - name: config replace
       ios_command:
