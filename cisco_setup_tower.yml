@@ -36,7 +36,7 @@
     #- name: create f5 credential
     #shell: "tower-cli credential create --name f5 --organization Default --credential-type f5 --inputs='{\"ansible_user\": \"admin\", \"ansible_ssh_pass\": \"admin\"}'"
 
-    - name: create cisco banner job template
+  - name: create cisco banner job template
     shell:  tower-cli job_template create --name "Cisco Banner"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook network_banner.yml --ask-credential-on-launch true
 
     #- name: create f5 member job template
