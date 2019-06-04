@@ -7,7 +7,7 @@
     inventory_file: /home/{{ ansible_user_id }}/networking-workshop/lab_inventory/hosts
     tower_inventory: cisco-tower-demo
     tower_org: Default
-    tower_project: cisco-network-playbooks
+    tower_project: network-playbooks
     tower_project_url: https://github.com/network-automation/tower_workshop
   tasks:
   - name: template out tower-cli file
@@ -38,7 +38,7 @@
       kind: ssh
 
   - name: create cisco banner job template
-    shell:  tower-cli job_template create --name "Cisco Banner"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook network_banner.yml --ask-credential-on-launch true
+    shell:  tower-cli job_template create --name "Cisco Banner"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook cisco_backup.yml --ask-credential-on-launch true
 
     #- name: create f5 member job template
     #shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @files/job_survey --ask-credential-on-launch true
