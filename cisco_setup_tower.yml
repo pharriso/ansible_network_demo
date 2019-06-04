@@ -52,3 +52,6 @@
 
   - name: create cisco backup job template
     shell:  tower-cli job_template create --name "Cisco Backup"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook cisco_backup.yml --ask-credential-on-launch true
+
+  - name: create cisco restore job template
+    shell:  tower-cli job_template create --name "Cisco Restore"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook cisco_restore.yml --ask-credential-on-launch true
