@@ -42,17 +42,17 @@ Demo order (suggestion)
 
 CLI Stuff
 
-Show Cisco inventory
-Show Cisco facts playbook - cisco_facts.yml
-Run the same playbook with -vv to show all facts
-Show reporting - cisco_report.yml
-Run Cisco config - cisco_config.yml
-Run F5 facts - bigip_facts.yml
+* Show Cisco inventory
+* Show Cisco facts playbook - cisco_facts.yml
+* Run the same playbook with -vv to show all facts
+* Show reporting - cisco_report.yml
+* Run Cisco config - cisco_config.yml
+* Run F5 facts - bigip_facts.yml
 
 Tower
 
-Explain Tower components - projects, credentials etc
-Run Cisco config playbook again from Tower - Show audit history
-Run F5 configure 
-Run F5 member playbook - shows survey.
-Show Cisco Config workflow
+* Explain Tower components - projects, credentials etc
+* Run Cisco config playbook again from Tower - Show audit history
+* Run F5 configure 
+* Run F5 member playbook - shows survey.
+* Show Cisco Config workflow
