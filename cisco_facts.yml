@@ -11,10 +11,12 @@
     - name: display version
       debug:
         msg: "The IOS version is: {{ ansible_net_version }}"
+      tags: show
 
     - name: display serial number
       debug:
         msg: "The serial number is:{{ ansible_net_serialnum }}"
+      tags: show
 
     - name: COLLECT OUTPUT OF SHOW COMMANDS
       ios_command:
@@ -22,7 +24,9 @@
           - show run | i hostname
           - show ip interface brief
       register: show_output
+      tags: show
 
     - name: DISPLAY THE COMMAND OUTPUT
       debug:
         var: show_output
+      tags: show
