@@ -1,0 +1,14 @@
+- id: 11
+  job_template: cisco archive backup
+  success_nodes:
+  - id: 13
+    job_template: cisco configure interface
+    success_nodes:
+    - failure_nodes:
+      - id: 12
+        job_template: cisco archive restore
+        success_nodes:
+        - id: 15
+          job_template: cisco ping test
+      id: 14
+      job_template: cisco ping test
