@@ -15,6 +15,6 @@
       pool: "{{ pool_name }}"
       state: "{{ member_state }}"
       port: 80
-      name: "{{ member_name }}"
+      address: "{{ member_name }}"
       validate_certs: "no"
 
