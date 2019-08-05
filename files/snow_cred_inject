@@ -1,0 +1,4 @@
+extra_vars:
+  snow_user: '{{ snow_user }}'
+  snow_password: '{{ snow_password }}'
+  snow_instance: '{{ snow_instance }}'

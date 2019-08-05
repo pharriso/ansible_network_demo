@@ -1,0 +1,16 @@
+fields:
+  - id: snow_user
+    type: string
+    label: User
+  - id: snow_password
+    type: string
+    label: Password
+    secret: true
+  - id: snow_instance
+    type: string
+    label: Instance
+    secret: true
+required:
+  - snow_user
+  - snow_password
+  - snow_instance
