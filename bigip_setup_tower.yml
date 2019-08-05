@@ -57,7 +57,7 @@
     shell: tower-cli job_template associate_credential --job-template "Manage F5 member ServiceNow" --credential snow
 
   - name: create f5 snow facts job template
-    shell: tower-cli job_template create --name "Gather F5 Facts ServiceNow" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member_snow.yml --credential f5
+    shell: tower-cli job_template create --name "Gather F5 Facts ServiceNow" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_facts_snow.yml --credential f5
 
   - name: add snow credential to job template
     shell: tower-cli job_template associate_credential --job-template "Gather F5 Facts ServiceNow" --credential snow

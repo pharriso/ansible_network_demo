@@ -16,15 +16,15 @@
         validate_certs: no
       register: device_facts
 
-  - name: update servicenow request
-    snow_record:
-      username: "{{ snow_user }}"
-      password: "{{ snow_password }}"
-      instance: "{{ snow_instance }}"
-      state: present
-      table: sc_request
-      number: "{{ snow_request }}"
-      data:
-        work_notes: "Ansible Automation - Pool details {{ device_facts['ltm_pools'][0]['members'] }}"
-    delegate_to: localhost
-    become: false
+    - name: update servicenow request
+      snow_record:
+        username: "{{ snow_user }}"
+        password: "{{ snow_password }}"
+        instance: "{{ snow_instance }}"
+        state: present
+        table: sc_request
+        number: "{{ snow_request }}"
+        data:
+          work_notes: "Ansible Automation - Pool details {{ device_facts['ltm_pools'][0]['members'] }}"
+      delegate_to: localhost
+      become: false
