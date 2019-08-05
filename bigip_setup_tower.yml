@@ -33,6 +33,9 @@
   - name: create snow credential type
     shell: tower-cli credential_type create  --name snow --inputs @files/snow_cred_input  --injectors @files/snow_cred_inject --kind cloud
 
+  - name: create snow credential
+    shell: "tower-cli credential create --name snow --organization Default --credential-type snow --inputs='{\"snow_user\": \"admin\", \"snow_password\": \"{{ snow_password }}\", \"snow_instance\": \"{{ snow_instance }}\"}'"
+
   - name: create f5 credential
     tower_credential:
       username: admin
