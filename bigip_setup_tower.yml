@@ -51,7 +51,7 @@
     shell: tower-cli job_template create --name "Manage F5 member" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member.yml --survey-enabled true --survey-spec @files/job_survey --credential f5
 
   - name: create f5 snow member job template
-    shell: tower-cli job_template create --name "Manage F5 member ServiceNow" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member_snow.yml --survey-enabled true --survey-spec @files/job_survey --ask-credential-on-launch true --ask-variables-on-launch true --credential f5
+    shell: tower-cli job_template create --name "Manage F5 member ServiceNow" --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_pool_member_snow.yml --survey-enabled true --survey-spec @files/job_survey  --ask-variables-on-launch true --credential f5
 
   - name: add snow credential to job template
     shell: tower-cli job_template associate_credential --job-template "Manage F5 member ServiceNow" --credential snow
