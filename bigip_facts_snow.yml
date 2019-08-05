@@ -25,6 +25,6 @@
         table: sc_request
         number: "RITM{{ snow_request.split('REQ')[1] }}"
         data:
-          comments: "{{ device_facts['ltm_pools'][0]['members'] }}"
+          comments: "{{ device_facts.ltm_pools[0].members }}"
       delegate_to: localhost
       become: false
