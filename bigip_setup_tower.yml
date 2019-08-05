@@ -39,6 +39,7 @@
       password: admin
       kind: ssh
       organization: "{{ tower_org }}"
+      name: f5
 
   - name: create f5 config job template
     shell:  tower-cli job_template create --name "Configure F5"  --job-type run --inventory {{ tower_inventory }} --project {{ tower_project }} --playbook bigip_config.yml --credential f5
