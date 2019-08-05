@@ -1,0 +1,30 @@
+---
+- name: discover f5 pool details
+  hosts: f5
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: collect big-ip pool details
+      bigip_device_facts:
+        gather_subset:
+         - ltm-pools
+        server: "{{private_ip}}"
+        user: "{{ansible_user}}"
+        password: "{{ansible_ssh_pass}}"
+        server_port: 8443
+        validate_certs: no
+      register: device_facts
+
+  - name: update servicenow request
+    snow_record:
+      username: "{{ snow_user }}"
+      password: "{{ snow_password }}"
+      instance: "{{ snow_instance }}"
+      state: present
+      table: sc_request
+      number: "{{ snow_request }}"
+      data:
+        work_notes: "Ansible Automation - Pool details {{ device_facts['ltm_pools'][0]['members'] }}"
+    delegate_to: localhost
+    become: false
