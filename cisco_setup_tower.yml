@@ -17,6 +17,12 @@
       - {"name": "cisco network interface", "playbook": "network_interface.yml" }
       - {"name": "cisco config mgmt", "playbook": "router_config.yml" }
   tasks:
+
+  - name: install servicenow python module
+    pip:
+      name: pysnow
+    become: true
+
   - name: template out tower-cli file
     blockinfile:
       path: /home/{{ ansible_user_id }}/.tower_cli.cfg
