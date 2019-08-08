@@ -2,7 +2,7 @@
   job_template: cisco archive backup
   success_nodes:
   - id: 13
-    job_template: cisco configure interface
+    job_template: cisco network interface
     success_nodes:
     - failure_nodes:
       - id: 12
