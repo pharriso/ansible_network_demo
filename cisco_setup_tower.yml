@@ -75,7 +75,7 @@
     loop: "{{ tower_jobs }}"
 
   - name: add snow credential to job template
-    shell: tower-cli job_template associate_credential --job-template "Cisco config" --credential snow
+    shell: tower-cli job_template associate_credential --job-template "Cisco config mgmt" --credential snow
 
   - name: create tower workflow
     tower_workflow_template:
