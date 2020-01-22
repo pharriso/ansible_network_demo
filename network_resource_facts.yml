@@ -1,0 +1,21 @@
+---
+
+- hosts: cisco
+  gather_facts: false
+  connection: network_cli
+  tasks:
+  - name: gather facts
+    ios_facts:
+      gather_subset: all
+      gather_network_resources: interfaces
+
+
+  - name: write json to file
+    copy:
+      dest: /tmp/{{ inventory_hostname }}.json
+      content: "{{ ansible_network_resources }}"
+
+  - name: write yaml to file
+    copy:
+      dest: /tmp/{{ inventory_hostname }}.yaml
+      content: "{{ ansible_network_resources | to_nice_yaml }}"
