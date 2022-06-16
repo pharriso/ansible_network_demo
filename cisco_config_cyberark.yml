@@ -9,7 +9,7 @@
       ios_config:
         commands:
           - snmp-server community ansible-public RO
-          - snmp-server community ansible-private RW
+          - snmp-server community {{ lookup('cyberark.conjur.conjur_variable', 'cisco-snmp/{{ inventory_hostname }}') }} RW
           - snmp-server community ansible-test RO
 
     - name: ensure that routers are secure
