@@ -3,7 +3,6 @@
   hosts: cisco
   gather_facts: no
   connection: network_cli
-
   tasks:
 
     - name: ensure that the desired snmp strings are present
@@ -12,8 +11,6 @@
           - snmp-server community ansible-public RO
           - snmp-server community ansible-private RW
           - snmp-server community ansible-test RO
-
-  tasks:
 
     - name: ensure that routers are secure
       ios_config:
